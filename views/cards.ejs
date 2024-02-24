@@ -1,0 +1,27 @@
+<%- include("header") %>
+
+<main>
+    <div class="allCards">
+        <h1>All Base Set Pokemon</h1>
+
+        <% cards.forEach(card => { %>
+            <div>
+                <h2><%= card.name %></h2>
+                <% if (card.image) { %>
+                    <img class="pokemonImage" src="<%= card.image %>" alt="<%= card.name %>">
+                <% } else { %>
+                    <!-- Display a default image or no image -->
+                    <img class="pokemonImage" src="/public/PokemonCardBack.png" alt="<%= card.name %>">
+                <% } %>
+            </div>
+        <% }); %>
+
+        <img src="https://assets.tcgdex.net/en/swsh/swsh3/136/high.webp" alt="">
+
+    </div>
+
+</main>
+
+</body>
+
+</html>
