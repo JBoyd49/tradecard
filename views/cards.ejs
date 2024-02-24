@@ -3,21 +3,21 @@
 <main>
     <div class="allCards">
         <h1>All Base Set Pokemon</h1>
-
-        <% cards.forEach(card => { %>
+    
+        <% for (const card of cards) { %>
             <div>
-                <h2><%= card.name %></h2>
+                <h2><%- card.name %></h2>
                 <% if (card.image) { %>
-                    <img class="pokemonImage" src="<%= card.image %>" alt="<%= card.name %>">
+                    <img class="pokemonImage" src="<%- card.image %>/high.webp" alt="<%- card.name %>">
                 <% } else { %>
                     <!-- Display a default image or no image -->
-                    <img class="pokemonImage" src="/public/PokemonCardBack.png" alt="<%= card.name %>">
+                    <img class="pokemonImage" src="/public/PokemonCardBack.png" alt="<%- card.name %>">
                 <% } %>
             </div>
-        <% }); %>
-
+        <% } %> <!-- Corrected closing tag -->
+    
         <img src="https://assets.tcgdex.net/en/swsh/swsh3/136/high.webp" alt="">
-
+    
     </div>
 
 </main>
