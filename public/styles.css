@@ -1,10 +1,11 @@
 body {
     margin: 0;
+    padding: 0;
     font-family:  Geneva, Verdana, sans-serif;
 }
 
 main {
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 30px;
 }
@@ -97,7 +98,7 @@ main {
 
 a.searchcardsbutton {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 1.2vw 1.7vw;
     color: white;
     background-color: crimson;
     text-decoration: none;
@@ -105,6 +106,8 @@ a.searchcardsbutton {
     border-radius: 5px;
     border: black 2px solid;
     transition: 0.3s ease;
+    font-size: 1vw;
+    font-family: 'ArchiveFont', sans-serif;
 }
 
 a.searchcardsbutton:hover {
@@ -114,7 +117,7 @@ a.searchcardsbutton:hover {
 
 a.createaccountbutton {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 1.2vw 1.7vw;
     color: crimson;
     background-color: white;
     text-decoration: none;
@@ -122,6 +125,8 @@ a.createaccountbutton {
     border-radius: 5px;
     border: black 2px solid;
     transition: 0.3s ease;
+    font-size: 1vw;
+    font-family: 'ArchiveFont', sans-serif;
 }
 
 a.createaccountbutton:hover {
@@ -132,6 +137,129 @@ a.createaccountbutton:hover {
 .allcards .pokemonimage{
     height: auto;
     width: 200px;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.welcome h1{
+    font-size: 4.5vw;
+    font-family: 'ArchiveFont', sans-serif;
+    margin-top : 0px;
+    margin-bottom: 0px;
+}
+
+.welcome h3{
+    font-size: 2vw;
+    font-family: 'ArchiveFont', sans-serif;
+    margin-bottom: 0px;
+
+}
+
+.homepagetop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 5px;
+    gap: 15px;
+}
+
+.searchfeature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.featuresbox2 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.featuresbox2 .featuresbox2text {
+    margin-right: 50px;
+}
+
+.featuresbox2 .featuresbox2img {
+    margin-left: 50px; 
+}
+
+.featuresbox2 .featuresbox2text h2{
+    font-size: 1.8vw;
+    font-family: 'ArchiveFont', sans-serif;
+    margin-right: 7vw;
+}
+
+.featuresbox2 .featuresbox2text p{
+    font-size: 1.5vw;
+    font-family: sans-serif;
+    margin-right: 7vw;
+}
+
+.featuresbox2 .featuresbox2img img{
+    height: 95%;
+    width: 95%;
+}
+
+.collectionfeature, .ratingfeature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(252, 114, 114);
+}
+
+.collectionfeature .featuresbox1, .ratingfeature .featuresbox3 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.collectionfeature .featuresbox1 .featuresbox1text, .ratingfeature .featuresbox3 .featuresbox3text {
+    margin-left: 50px;
+}
+
+.collectionfeature .featuresbox1 .featuresbox1img, .ratingfeature .featuresbox3 .featuresbox3img {
+    margin-right: 50px; 
+}
+
+.collectionfeature .featuresbox1 .featuresbox1text h2, .ratingfeature .featuresbox3 .featuresbox3text h2 {
+    font-size: 1.8vw;
+    font-family: 'ArchiveFont', sans-serif;
+    margin-left: 7vw;
+}
+
+.collectionfeature .featuresbox1 .featuresbox1text p, .ratingfeature .featuresbox3 .featuresbox3text p {
+    font-size: 1.5vw;
+    font-family: sans-serif;
+    margin-left: 7vw;
+}
+
+.featureswrapper {
+    display: flex;
+    justify-content: space-between; /* Optional: Adds space between the divs */
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: crimson;
+    height: 5vw;
+}
+
+.logofooter{
+    height: 4vw;
+    width: 4vw;
+
 }
 
 @media only screen and (max-width: 1458px) {
