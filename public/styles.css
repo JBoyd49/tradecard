@@ -262,6 +262,81 @@ a.createaccountbutton:hover {
 
 }
 
+a.collectionsbutton {
+    display: inline-block;
+    padding: 1.2vw 1.7vw;
+    color: crimson;
+    background-color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    border: black 2px solid;
+    transition: 0.3s ease;
+    font-size: 1vw;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+a.collectionsbutton:hover {
+    background-color: rgb(190, 189, 189);
+    color: white;
+}
+
+.accountcreated {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Adjust this value to increase or decrease the gap */
+}
+
+.accountcreatedtop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.accountcreatedtop h1{
+    font-size: 3vw;
+    margin: 0;
+}
+
+.accountcreatedparas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.accountcreatedparas h2{
+    font-size: 2vw;   
+}
+
+.accountcreatedparas h3{
+    font-size: 1.5vw;   
+}
+
+.accountcreatedbuttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+}
+
+.accountcreated a {
+    text-align: center;
+    display: block;
+}
+
+.accountcreatedimg {
+    display: flex;
+    justify-content: center;
+}
+
+.accountcreatedimg img {
+    height: 20vw;
+    width: 20vw;
+}
+
 @media only screen and (max-width: 1458px) {
     .grid-item {
         padding: 20px 60px;

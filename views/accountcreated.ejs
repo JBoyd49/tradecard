@@ -1,10 +1,26 @@
 <%- include ("header") %>
 
-<body>
-    
-    <div>
-        <h1>Welcome to Tradecard INSERT USERNAME HERE</h1>
-    </div>
-    
-</body>
-</html>
+    <body>
+        <div class="accountcreated">
+            <div class="accountcreatedtop">
+                <h1>Welcome to Tradecard <%= username %>!</h1>
+            </div>
+            <div class="accountcreatedparas">
+                <h2>You are now ready to start your card-collecting journey</h2>
+                <h3>Click on a button below to get started</h3>
+            </div>
+            <div class="accountcreatedbuttons">
+                <a href="/cards" class="searchcardsbutton">
+                    Search cards
+                </a>
+                <a href="/collections" class="collectionsbutton">
+                    Collections
+                </a>
+            </div>
+            <div class="accountcreatedimg">
+                <img src="/PikachuPartyHat.png">
+            </div>
+        </div>
+    </body>
+
+    </html>

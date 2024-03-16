@@ -45,7 +45,17 @@ app.post('/createaccount', async (req, res) => {
     } else {
         res.render('/accountnotcreated');
     }
+
+    //req.session.newAccount = true;
 });
+
+ app.get('/accountcreated', (req, res) => {
+//     if (req.session.newAccount){
+         res.render('accountcreated', {username : req.body.username});
+//     } else {
+//         res.redirect('/404');
+//     }
+ });
 
 app.get("/cards", async (req, res, next) => { // Add 'next' here
     try {
