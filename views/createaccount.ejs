@@ -1,0 +1,19 @@
+<%- include ("header") %>
+
+<div class="createaccounttitle">
+    <h1>Create an account</h1>
+    <p>Fill in your details to create your very own Tradecard account</p>
+</div>
+
+<div class="createaccountform">
+    <form action="/createaccount" method="POST">
+        <p>
+            Username : <input name="username"><br><br>
+            First name :   <input name="firstname"><br><br>
+            Last name :  <input name="lastname"><br><br>
+            Email :  <input name="email"><br><br>
+            Password :  <input name="password" type="password"><br><br>
+        </p>
+        <input type="submit" value="Create account">
+    </form>
+</div>
