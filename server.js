@@ -46,6 +46,32 @@ app.post('/createaccount/new', (req, res) => {
     });
 });
 
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    let accountsearch = `SELECT * FROM user WHERE userName = '?'`;
+
+    db.query(accountsearch, [username], (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Database error' });
+        } else if (results.length > 0) {
+            const user = results[0];
+            const salt = user.password.slice(0, 6);
+            const saltedHash = crypto.createHash('sha1').update(salt + password).digest('hex');
+
+            if (user.password === salt + saltedHash) {
+                res.status(200).json({ message: 'Login successful' });
+            } else {
+                res.status(401).json({ message: 'Invalid username or password' });
+            }
+        } else {
+            res.status(401).json({ message: 'Invalid username or password' });
+        }
+    });
+});
+
 app.listen(4000, () => {
     console.log("Server is running on port 4000");
 });

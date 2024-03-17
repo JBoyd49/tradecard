@@ -1,5 +1,7 @@
 const express = require("express");
-const app = express();
+let app = express();
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const mysql = require("mysql2");
 const crypto = require('crypto');
 const axios = require('axios');
@@ -10,17 +12,65 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/public"));
 
+const halfDay = 1000 * 60 * 60 * 12;
+
+app.use(session({
+    secret: 'secretsessionkey123',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: halfDay },
+}));
+
+function authenticateUser(username, password) {
+    // Replace this with your actual user authentication logic
+    return true;
+}
+
+app.get("/login", (req, res) => {
+    res.render("login", { loggedIn: req.session && req.session.loggedIn });
+});
+
+app.use(express.urlencoded({ extended: true }));
+
+app.post('/login', (req, res) => {
+    const username = req.body.usernameField;
+    const password = req.body.passwordField;
+
+    // replace this with your actual user authentication logic
+    const user = authenticateUser(username, password);
+
+    if (user) {
+        req.session.loggedIn = true;
+        res.redirect('/');
+    } else {
+        res.redirect('/loginfailed');
+    }
+});
+
 app.get("/", (req, res) => {
-    res.render("index");
+    if (req.session.loggedIn) {
+        // If the user is logged in header for logged in user shows
+        res.render('index', { header: 'headerloggedin' });
+    } else {
+        // If the user is not logged in normal header shows
+        res.render('index', { header: 'header' });
+    }
 });
 
 app.get('/createaccount', (req, res) => {
-    res.render('createaccount');
+    if (req.session.loggedIn) {
+        // If the user is logged in header for logged in user shows
+        res.render('createaccount', { header: 'headerloggedin' });
+    } else {
+        // If the user is not logged in normal header shows
+        res.render('createaccount', { header: 'header' });
+    }
 });
 
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/createaccount', async (req, res) => {
+
     let username = req.body.username;
     let firstname = req.body.firstname;
     let lastname = req.body.lastname;
@@ -40,24 +90,32 @@ app.post('/createaccount', async (req, res) => {
         password: storedSaltedHash,
     });
 
-    if(response.status === 201) {
-        res.render('/accountcreated');
+    if (response.status === 201) {
+        req.session.newAccount = true;
+        res.redirect('/accountcreated');
     } else {
-        res.render('/accountnotcreated');
+        res.redirect('/accountnotcreated');
     }
 
-    //req.session.newAccount = true;
 });
 
- app.get('/accountcreated', (req, res) => {
-//     if (req.session.newAccount){
-         res.render('accountcreated', {username : req.body.username});
-//     } else {
-//         res.redirect('/404');
-//     }
- });
+app.get('/accountcreated', (req, res) => {
+    if (req.session.newAccount) {
+        res.render('accountcreated', { header: 'headerloggedin' });
+    } else {
+        res.render('accountcreated', { header: 'header' });
+    }
+});
 
-app.get("/cards", async (req, res, next) => { // Add 'next' here
+app.get("/cards", async (req, res, next) => {
+
+    // Check if the user is logged in and displays the correct header
+    if (req.session.loggedIn) {
+        res.render('cards', { header: 'headerloggedin' });
+    } else {
+        res.render('cards', { header: 'header' });
+    }
+
     try {
         const url = "https://api.tcgdex.net/v2/en/base/base1";
 
@@ -78,22 +136,6 @@ app.get("/cards", async (req, res, next) => { // Add 'next' here
         res.render("cards", { cards: basePokemon.cards })
     } catch (error) {
         next(error) // This will now work correctly
-    }
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
-});
-
-app.use(express.urlencoded({ extended: true }));
-
-app.post('/login', (req, res) => {
-    const username = req.body.usernameField;
-
-    if (username === '123') {
-        res.send('<code>logged in</code>');
-    } else {
-        res.send('<code>accessed denied</code>');
     }
 });
 

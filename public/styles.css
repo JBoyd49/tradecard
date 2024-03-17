@@ -8,6 +8,7 @@ main {
     width: 100%;
     margin: 0 auto;
     padding-top: 30px;
+    flex: 1 0 auto;
 }
 
 .grid-row {
@@ -64,6 +65,49 @@ main {
 }
 
 .header .logintopbutton:hover{
+    background-color: rgb(190, 189, 189);
+    color: white;
+}
+
+.headerloggedin {
+    padding: 10px;
+    background-color: crimson;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 2px black;
+}
+
+.headerloggedin .title a{
+    margin-left: 10px;
+    font-size: 3vw;
+    color: white;
+    font-family: 'ArchiveFont', sans-serif;
+    text-decoration: none;
+}
+
+.headerloggedin .title a:hover{
+    color: black;
+}
+
+.headerloggedin .logotop{
+    height: 6vw;
+    width: 6vw;
+}
+
+.headerloggedin a.logouttopbutton {
+    display: inline-block;
+    padding: 10px 20px;
+    color: crimson;
+    background-color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    border: black 2px solid;
+    transition: 0.3s ease;
+}
+
+.headerloggedin .logouttopbutton:hover{
     background-color: rgb(190, 189, 189);
     color: white;
 }
@@ -254,6 +298,7 @@ a.createaccountbutton:hover {
     align-items: center;
     background-color: crimson;
     height: 5vw;
+    flex-shrink: 0;
 }
 
 .logofooter{
@@ -333,8 +378,56 @@ a.collectionsbutton:hover {
 }
 
 .accountcreatedimg img {
-    height: 20vw;
-    width: 20vw;
+    height: 18vw;
+    width: 18vw;
+}
+
+.createaccounttitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.createaccounttitle h1{
+    font-size: 3vw;
+    margin: 0;
+}
+
+.createaccountform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.createaccountform input {
+    width: 100%;
+    margin: 0 auto; 
+    display: block; 
+}
+
+a.createaccountbutton2 {
+    display: inline-block;
+    padding: 1.2vw 1.7vw;
+    color: white;
+    background-color: crimson;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    border: black 2px solid;
+    transition: 0.3s ease;
+    font-size: 1vw;
+    font-family: 'ArchiveFont', sans-serif;
+    margin-bottom: 10px;
+}
+
+a.createaccountbutton2:hover {
+    background-color: rgb(190, 189, 189);
+    color: white;
 }
 
 @media only screen and (max-width: 1458px) {
