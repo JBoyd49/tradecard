@@ -1,14 +1,13 @@
 body {
     margin: 0;
     padding: 0;
-    font-family:  Geneva, Verdana, sans-serif;
+    font-family: Geneva, Verdana, sans-serif;
 }
 
 main {
     width: 100%;
     margin: 0 auto;
     padding-top: 30px;
-    flex: 1 0 auto;
 }
 
 .grid-row {
@@ -35,7 +34,7 @@ main {
     border-bottom: solid 2px black;
 }
 
-.header .title a{
+.header .title a {
     margin-left: 10px;
     font-size: 3vw;
     color: white;
@@ -43,11 +42,11 @@ main {
     text-decoration: none;
 }
 
-.header .title a:hover{
+.header .title a:hover {
     color: black;
 }
 
-.header .logotop{
+.header .logotop {
     height: 6vw;
     width: 6vw;
 }
@@ -64,7 +63,7 @@ main {
     transition: 0.3s ease;
 }
 
-.header .logintopbutton:hover{
+.header .logintopbutton:hover {
     background-color: rgb(190, 189, 189);
     color: white;
 }
@@ -78,7 +77,7 @@ main {
     border-bottom: solid 2px black;
 }
 
-.headerloggedin .title a{
+.headerloggedin .title a {
     margin-left: 10px;
     font-size: 3vw;
     color: white;
@@ -86,11 +85,11 @@ main {
     text-decoration: none;
 }
 
-.headerloggedin .title a:hover{
+.headerloggedin .title a:hover {
     color: black;
 }
 
-.headerloggedin .logotop{
+.headerloggedin .logotop {
     height: 6vw;
     width: 6vw;
 }
@@ -107,7 +106,7 @@ main {
     transition: 0.3s ease;
 }
 
-.headerloggedin .logouttopbutton:hover{
+.headerloggedin .logouttopbutton:hover {
     background-color: rgb(190, 189, 189);
     color: white;
 }
@@ -126,15 +125,15 @@ main {
     margin-right: auto;
 }
 
-.navbartop a{
-    padding: 0px 25px 0px 25px; 
+.navbartop a {
+    padding: 0px 25px 0px 25px;
     font-size: 2vw;
     color: crimson;
     font-family: 'ArchiveFont', sans-serif;
     text-decoration: none;
 }
 
-.navbartop a:hover{
+.navbartop a:hover {
     color: white;
     background-color: crimson;
     border-radius: 10px;
@@ -178,7 +177,7 @@ a.createaccountbutton:hover {
     color: white;
 }
 
-.allcards .pokemonimage{
+.allcards .pokemonimage {
     height: auto;
     width: 200px;
 }
@@ -191,14 +190,14 @@ a.createaccountbutton:hover {
     margin: 5px 0;
 }
 
-.welcome h1{
+.welcome h1 {
     font-size: 4.5vw;
     font-family: 'ArchiveFont', sans-serif;
-    margin-top : 0px;
+    margin-top: 0px;
     margin-bottom: 0px;
 }
 
-.welcome h3{
+.welcome h3 {
     font-size: 2vw;
     font-family: 'ArchiveFont', sans-serif;
     margin-bottom: 0px;
@@ -232,27 +231,28 @@ a.createaccountbutton:hover {
 }
 
 .featuresbox2 .featuresbox2img {
-    margin-left: 50px; 
+    margin-left: 50px;
 }
 
-.featuresbox2 .featuresbox2text h2{
+.featuresbox2 .featuresbox2text h2 {
     font-size: 1.8vw;
     font-family: 'ArchiveFont', sans-serif;
     margin-right: 7vw;
 }
 
-.featuresbox2 .featuresbox2text p{
+.featuresbox2 .featuresbox2text p {
     font-size: 1.5vw;
     font-family: sans-serif;
     margin-right: 7vw;
 }
 
-.featuresbox2 .featuresbox2img img{
+.featuresbox2 .featuresbox2img img {
     height: 95%;
     width: 95%;
 }
 
-.collectionfeature, .ratingfeature {
+.collectionfeature,
+.ratingfeature {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -260,28 +260,33 @@ a.createaccountbutton:hover {
     background-color: rgb(252, 114, 114);
 }
 
-.collectionfeature .featuresbox1, .ratingfeature .featuresbox3 {
+.collectionfeature .featuresbox1,
+.ratingfeature .featuresbox3 {
     align-items: center;
     display: flex;
     flex-direction: row;
     margin: 10px;
 }
 
-.collectionfeature .featuresbox1 .featuresbox1text, .ratingfeature .featuresbox3 .featuresbox3text {
+.collectionfeature .featuresbox1 .featuresbox1text,
+.ratingfeature .featuresbox3 .featuresbox3text {
     margin-left: 50px;
 }
 
-.collectionfeature .featuresbox1 .featuresbox1img, .ratingfeature .featuresbox3 .featuresbox3img {
-    margin-right: 50px; 
+.collectionfeature .featuresbox1 .featuresbox1img,
+.ratingfeature .featuresbox3 .featuresbox3img {
+    margin-right: 50px;
 }
 
-.collectionfeature .featuresbox1 .featuresbox1text h2, .ratingfeature .featuresbox3 .featuresbox3text h2 {
+.collectionfeature .featuresbox1 .featuresbox1text h2,
+.ratingfeature .featuresbox3 .featuresbox3text h2 {
     font-size: 1.8vw;
     font-family: 'ArchiveFont', sans-serif;
     margin-left: 7vw;
 }
 
-.collectionfeature .featuresbox1 .featuresbox1text p, .ratingfeature .featuresbox3 .featuresbox3text p {
+.collectionfeature .featuresbox1 .featuresbox1text p,
+.ratingfeature .featuresbox3 .featuresbox3text p {
     font-size: 1.5vw;
     font-family: sans-serif;
     margin-left: 7vw;
@@ -289,7 +294,7 @@ a.createaccountbutton:hover {
 
 .featureswrapper {
     display: flex;
-    justify-content: space-between; /* Optional: Adds space between the divs */
+    justify-content: space-between;
 }
 
 .footer {
@@ -298,13 +303,11 @@ a.createaccountbutton:hover {
     align-items: center;
     background-color: crimson;
     height: 5vw;
-    flex-shrink: 0;
 }
 
-.logofooter{
+.logofooter {
     height: 4vw;
     width: 4vw;
-
 }
 
 a.collectionsbutton {
@@ -330,7 +333,8 @@ a.collectionsbutton:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px; /* Adjust this value to increase or decrease the gap */
+    gap: 20px;
+    /* Adjust this value to increase or decrease the gap */
 }
 
 .accountcreatedtop {
@@ -340,7 +344,7 @@ a.collectionsbutton:hover {
     font-family: 'ArchiveFont', sans-serif;
 }
 
-.accountcreatedtop h1{
+.accountcreatedtop h1 {
     font-size: 3vw;
     margin: 0;
 }
@@ -353,18 +357,18 @@ a.collectionsbutton:hover {
     font-family: 'ArchiveFont', sans-serif;
 }
 
-.accountcreatedparas h2{
-    font-size: 2vw;   
+.accountcreatedparas h2 {
+    font-size: 2vw;
 }
 
-.accountcreatedparas h3{
-    font-size: 1.5vw;   
+.accountcreatedparas h3 {
+    font-size: 1.5vw;
 }
 
 .accountcreatedbuttons {
     display: flex;
     justify-content: center;
-    gap: 20px; 
+    gap: 20px;
 }
 
 .accountcreated a {
@@ -390,12 +394,12 @@ a.collectionsbutton:hover {
     font-family: 'ArchiveFont', sans-serif;
 }
 
-.createaccounttitle h1{
+.createaccounttitle h1 {
     font-size: 3vw;
     margin: 0;
 }
 
-.createaccountform{
+.createaccountform {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -406,8 +410,8 @@ a.collectionsbutton:hover {
 
 .createaccountform input {
     width: 100%;
-    margin: 0 auto; 
-    display: block; 
+    margin: 0 auto;
+    display: block;
 }
 
 a.createaccountbutton2 {
@@ -427,6 +431,50 @@ a.createaccountbutton2 {
 
 a.createaccountbutton2:hover {
     background-color: rgb(190, 189, 189);
+    color: white;
+}
+
+.loginpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.loginpage h1{
+    font-size: 3vw;
+    margin: 0;
+}
+
+.loginpage .loginform{
+    font-size: 1.5vw;
+}
+
+.loginform form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginform p {
+    margin-right: 10px;
+}
+
+.loginform input {
+    display: inline-block;
+    padding: 1vw 1.5vw;
+    background-color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    border: black 2px solid;
+    font-size: 1vw;
+}
+
+.loginbutton:hover{
+    background-color: rgb(252, 114, 114);
     color: white;
 }
 
@@ -460,7 +508,8 @@ a.createaccountbutton2:hover {
     }
 }
 
-@font-face { /* This imports the custom font archive */
+@font-face {
+    /* This imports the custom font archive */
     font-family: 'ArchiveFont';
     src: url('/Archive-Regular.ttf');
 }
