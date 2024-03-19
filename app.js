@@ -1,3 +1,4 @@
+//sets up all requirements for app.js file
 const express = require("express");
 let app = express();
 const session = require('express-session');
@@ -6,14 +7,16 @@ const mysql = require("mysql2");
 const crypto = require('crypto');
 const axios = require('axios');
 
+//middleware to use express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/public"));
 
-const halfDay = 1000 * 60 * 60 * 12;
+//renders the ejs files
+app.set('view engine', 'ejs');
 
+//sets up sessions for users
+const halfDay = 1000 * 60 * 60 * 12;
 app.use(session({
     secret: 'secretsessionkey123',
     resave: false,
@@ -21,32 +24,31 @@ app.use(session({
     cookie: { maxAge: halfDay },
 }));
 
-function authenticateUser(username, password) {
-    // Replace this with your actual user authentication logic
-    return true;
-}
-
-app.get("/login", (req, res) => {
+//login page determined by login status
+app.get('/login', (req, res) => {
     res.render("login", { loggedIn: req.session && req.session.loggedIn });
 });
 
-app.use(express.urlencoded({ extended: true }));
+//post to check login details and redirect to home page if logged in or to the login page if details not found
+app.post('/login', async (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
 
-app.post('/login', (req, res) => {
-    const username = req.body.usernameField;
-    const password = req.body.passwordField;
+    const response = await axios.post('http://localhost:4000/login', {
+        username: username,
+        password: password,
+    });
 
-    // replace this with your actual user authentication logic
-    const user = authenticateUser(username, password);
-
-    if (user) {
+    if (response.status === 200) {
         req.session.loggedIn = true;
         res.redirect('/');
     } else {
-        res.redirect('/loginfailed');
+        res.redirect('/login');
     }
+
 });
 
+//gets the home page and determines the header based on login status
 app.get("/", (req, res) => {
     if (req.session.loggedIn) {
         // If the user is logged in header for logged in user shows
@@ -57,6 +59,7 @@ app.get("/", (req, res) => {
     }
 });
 
+//gets create account page and determines the header based on login status
 app.get('/createaccount', (req, res) => {
     if (req.session.loggedIn) {
         // If the user is logged in header for logged in user shows
@@ -67,8 +70,10 @@ app.get('/createaccount', (req, res) => {
     }
 });
 
+//middleware for parsing body of request
 app.use(express.urlencoded({ extended: true }));
 
+//post to create account and redirect to account created page if successful or to the create account page if not
 app.post('/createaccount', async (req, res) => {
 
     let username = req.body.username;
@@ -82,30 +87,37 @@ app.post('/createaccount', async (req, res) => {
     const saltedHash = crypto.createHash('sha1').update(salt + plainPassword).digest('hex');
     const storedSaltedHash = salt + saltedHash;
 
-    const response = await axios.post('http://localhost:4000/createaccount/new', {
+    const response = await axios.post('http://localhost:4000/createaccount', {
         username: username,
         firstname: firstname,
         lastname: lastname,
         email: email,
-        password: storedSaltedHash,
+        password: storedSaltedHash
+
+    }).catch(error => {
+        console.error(error);
+        return res.redirect('/createaccount');
     });
 
-    if (response.status === 201) {
+    if (response && response.status === 201) {
         req.session.newAccount = true;
+        req.session.username = username;
         res.redirect('/accountcreated');
     } else {
-        res.redirect('/accountnotcreated');
+        res.redirect('/index');
     }
 
 });
 
+//gets account created page and determines the header based on login status
 app.get('/accountcreated', (req, res) => {
-    if (req.session.newAccount) {
-        res.render('accountcreated', { header: 'headerloggedin' });
+    if (req.session.newAccount) { 
+        res.render('accountcreated', { header: 'headerloggedin', username: req.session.username});
     } else {
         res.render('accountcreated', { header: 'header' });
     }
 });
+
 
 app.get("/cards", async (req, res, next) => {
 

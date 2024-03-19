@@ -414,7 +414,7 @@ a.collectionsbutton:hover {
     display: block;
 }
 
-a.createaccountbutton2 {
+.createaccountbutton2 {
     display: inline-block;
     padding: 1.2vw 1.7vw;
     color: white;
@@ -429,7 +429,7 @@ a.createaccountbutton2 {
     margin-bottom: 10px;
 }
 
-a.createaccountbutton2:hover {
+.createaccountbutton2:hover {
     background-color: rgb(190, 189, 189);
     color: white;
 }
