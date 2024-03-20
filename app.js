@@ -34,18 +34,32 @@ app.post('/login', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
-    const response = await axios.post('http://localhost:4000/login', {
-        username: username,
-        password: password,
-    });
-
-    if (response.status === 200) {
-        req.session.loggedIn = true;
-        res.redirect('/');
-    } else {
+    //previous issues with users logging in without a username or password which should be fixed now
+    if (!username || !password) {
+        console.log('Username or password not provided.');
         res.redirect('/login');
+        return;
     }
 
+    try {
+        const response = await axios.post('http://localhost:4000/login', {
+            username: username,
+            password: password,
+        });
+
+        console.log('Received response:', response.status, response.data);
+
+
+        if (response.data.success) {
+            req.session.loggedIn = true;
+            res.redirect('/');
+        } else {
+            req.session.loggedIn = false;
+            res.redirect('/login');
+        }
+    } catch (error) {
+        console.error('Axios request failed:', error);
+    }
 });
 
 //gets the home page and determines the header based on login status
@@ -82,18 +96,12 @@ app.post('/createaccount', async (req, res) => {
     let email = req.body.email;
     let plainPassword = req.body.password;
 
-    //To be used to hash the password for very basic security - taken from Neil's Database module
-    const salt = crypto.randomBytes(3).toString('hex');
-    const saltedHash = crypto.createHash('sha1').update(salt + plainPassword).digest('hex');
-    const storedSaltedHash = salt + saltedHash;
-
     const response = await axios.post('http://localhost:4000/createaccount', {
         username: username,
         firstname: firstname,
         lastname: lastname,
         email: email,
-        password: storedSaltedHash
-
+        password: plainPassword
     }).catch(error => {
         console.error(error);
         return res.redirect('/createaccount');
@@ -111,10 +119,20 @@ app.post('/createaccount', async (req, res) => {
 
 //gets account created page and determines the header based on login status
 app.get('/accountcreated', (req, res) => {
-    if (req.session.newAccount) { 
-        res.render('accountcreated', { header: 'headerloggedin', username: req.session.username});
+    if (req.session.newAccount) {
+        res.render('accountcreated', { header: 'headerloggedin', username: req.session.username });
     } else {
         res.render('accountcreated', { header: 'header' });
+    }
+});
+
+//gets the logout page and logs the user out
+app.get('/logout', (req, res) => {
+    if(req.session.loggedIn) {
+        req.session.destroy();
+        res.redirect('/');
+    } else {
+        res.redirect('/');
     }
 });
 

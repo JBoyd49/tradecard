@@ -54,27 +54,36 @@ app.post('/createaccount', (req, res) => {
 
 //checks the database for the username and password
 app.post('/login', (req, res) => {
+
     let username = req.body.username;
     let password = req.body.password;
 
+    //SQL to search database for username and password before logging users in
     let accountsearch = `SELECT * FROM user WHERE userName = ?`;
 
     db.query(accountsearch, [username], (err, results) => {
+    
         if (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Database error' });
+            console.error('Database query error:', err);
+            res.json({ error: 'Database error' });
         } else if (results.length > 0) {
-            const user = results[0];
-            const salt = user.password.slice(0, 6);
-            const saltedHash = crypto.createHash('sha1').update(salt + password).digest('hex');
+            let user = results[0];
 
-            if (user.password === salt + saltedHash) {
-                res.status(200).json({ message: 'You have been logged in' });
+            //converts password from binary and extracts salt and hash
+            let storedPassword = user.password.toString('binary');
+            let salt = storedPassword.substr(0, 6);
+            let storedHash = storedPassword.substr(6, 40);
+            let providedHash = crypto.createHash('sha1').update(salt + password).digest('hex'); 
+
+            //compares passwords to authenticate user before logging them in if details are correct
+            if (providedHash === storedHash) {
+                res.json({ success : true, message: 'You have been logged in' });
             } else {
-                res.status(401).json({ message: 'Invalid username or password' });
+                res.json({ success : false, message: 'Invalid password' });
             }
         } else {
-            res.status(401).json({ message: 'Invalid username or password' });
+            console.log('No user found with provided username.');
+            res.json({ message: 'Invalid username or password' });
         }
     });
 });
