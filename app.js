@@ -21,7 +21,7 @@ app.use(session({
     secret: 'secretsessionkey123',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: halfDay },
+    cookie: { maxAge: halfDay, secure : false },
 }));
 
 //login page determined by login status
@@ -51,7 +51,10 @@ app.post('/login', async (req, res) => {
 
 
         if (response.data.success) {
+            console.log(response.data);
             req.session.loggedIn = true;
+            req.session.user = response.data.user;
+            console.log(req.session);
             res.redirect('/');
         } else {
             req.session.loggedIn = false;
@@ -87,7 +90,7 @@ app.get('/createaccount', (req, res) => {
 //middleware for parsing body of request
 app.use(express.urlencoded({ extended: true }));
 
-//post to create account and redirect to account created page if successful or to the create account page if not
+//post to create account through API in server.js file
 app.post('/createaccount', async (req, res) => {
 
     let username = req.body.username;
@@ -128,11 +131,59 @@ app.get('/accountcreated', (req, res) => {
 
 //gets the logout page and logs the user out
 app.get('/logout', (req, res) => {
-    if(req.session.loggedIn) {
+    if (req.session.loggedIn) {
         req.session.destroy();
         res.redirect('/');
     } else {
         res.redirect('/');
+    }
+});
+
+//gets information from database to make user profile page
+app.get('/userprofile', async (req, res) => {
+    if (req.session && req.session.user) {
+        const userId = req.session.user.userID; // assuming the user's id is stored in the session
+        try {
+            const response = await axios.get(`http://localhost:4000/userprofile/${userId}`);
+            console.log('Server response:', response.data);
+            res.render('userprofile', { user: response.data });
+        } catch (error) {
+            console.error('Axios request failed:', error);
+            res.status(500).json({ message: 'Failed to update user details' });
+        }
+    } else {
+        res.redirect('/login');
+    }
+});
+
+//gets update details page for ONLY users that are logged in
+app.get('/updatedetails', (req, res) => {
+    if (req.session.loggedIn) {
+        let user = {userID: req.session.user.userID};
+        res.render('updatedetails', { header: 'headerloggedin', user });
+    } else {
+        res.render('/login');
+    }
+});
+
+//post to update user details through API in server.js file
+app.post('/updatedetails/:userId', async (req, res) => {
+    let userId = req.params.userId;
+    let { userName, firstName, lastName, email } = req.body;
+
+    console.log('Received request to update user details:', req.body);
+
+    const userDetails = { userName, firstName, lastName, email };
+
+    try {
+        const response = await axios.post(`http://localhost:4000/updatedetails/${userId}`, userDetails);
+        if (response.data.message === 'User details updated successfully') {
+            res.redirect('/userprofile');
+        } else {
+            res.json({ message: 'Failed to update user details' });
+        }
+    } catch (error) {
+        res.json({ message: 'Failed to update user details' });
     }
 });
 
@@ -171,5 +222,5 @@ app.get("/cards", async (req, res, next) => {
 
 app.listen(3000, (err) => {
     if (err) throw err;
-    console.log("Server is running on port 3000");
+    console.log("Tradecard is running on port 3000");
 });

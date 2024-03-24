@@ -1,0 +1,19 @@
+<%- include('headerloggedin') %>
+
+    <div class="updatedetails">
+
+        <h2>Use the form to update your all your details and click submit</h2>
+        <h3>Please enter all fields</h3>
+
+        <div class="updatedetailsform">
+            <form action="/updatedetails/<%= user.userID %>" method="POST">
+                <p>
+                    Username : <input name="userName"><br><br>
+                    First name : <input name="firstName"><br><br>
+                    Last name : <input name="lastName"><br><br>
+                    Email : <input name="email"><br><br>
+                </p>
+                <button type="submit" class="updatedetailsbutton">Update account</button>
+            </form>
+        </div>
+    </div>

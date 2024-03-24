@@ -77,13 +77,53 @@ app.post('/login', (req, res) => {
 
             //compares passwords to authenticate user before logging them in if details are correct
             if (providedHash === storedHash) {
-                res.json({ success : true, message: 'You have been logged in' });
+                res.json({ success : true, message: 'You have been logged in', user : user });
             } else {
                 res.json({ success : false, message: 'Invalid password' });
             }
         } else {
             console.log('No user found with provided username.');
             res.json({ message: 'Invalid username or password' });
+        }
+    });
+});
+
+//gets user details from database and passes them in form of JSON user object
+app.get('/userprofile/:userId', (req, res) => {
+    const userId = req.params.userId;
+
+    // SQL query to fetch the user from the database using the userId
+    let sql = 'SELECT * FROM user WHERE userID = ?';
+
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error('Database query error:', err);
+            res.json({ message: 'Database error' });
+        } else if (results.length > 0) {
+            let user = results[0];
+            res.json(user);
+        } else{
+            res.json({ message: 'User not found' });
+        }
+    });
+});
+
+//post to update user details in database
+app.post('/updatedetails/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const { userName, firstName, lastName, email } = req.body;
+
+    console.log('Received request to update user details:', req.body);
+
+    // SQL to update details in database
+    let updatedetails = `UPDATE user SET userName = ?, firstName = ?, lastName = ?, email = ? WHERE userID = ?`;
+
+    db.query(updatedetails, [userName, firstName, lastName, email, userId], (error, results) => {
+        if (error) {
+            console.error('Failed to update user details:', error);
+            res.status(500).json({ message: 'Failed to update user details' });
+        } else {
+            res.json({ message: 'User details updated successfully' });
         }
     });
 });

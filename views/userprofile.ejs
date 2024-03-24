@@ -1,0 +1,22 @@
+<%- include('headerloggedin') %>
+
+    <div class="welcomeuser">
+        <h1>Welcome, <%= user.userName %>!</h1>
+        <h2>Here are your details</h2>
+    </div>
+
+    <div class="userdetails">
+        <p>First Name: <%= user.firstName %>
+        </p>
+        <p>Last Name: <%= user.lastName %>
+        </p>
+        <p>Email: <%= user.email %>
+        </p>
+    </div>
+    <div class="updatedetailslink">
+        <p>Update these details <a href="/updatedetails">here.</a></p>
+    </div>
+
+    </body>
+
+    </html>

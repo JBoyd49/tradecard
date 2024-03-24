@@ -29,9 +29,20 @@ main {
     padding: 10px;
     background-color: crimson;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
     border-bottom: solid 2px black;
+}
+
+.headerloggedin .title {
+    padding: 10px;
+    background-color: crimson;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .header .title a {
@@ -94,7 +105,13 @@ main {
     width: 6vw;
 }
 
-.headerloggedin a.logouttopbutton {
+.headerloggedin .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.headerloggedin .buttons a {
     display: inline-block;
     padding: 10px 20px;
     color: crimson;
@@ -106,7 +123,7 @@ main {
     transition: 0.3s ease;
 }
 
-.headerloggedin .logouttopbutton:hover {
+.headerloggedin .buttons:hover {
     background-color: rgb(190, 189, 189);
     color: white;
 }
@@ -443,12 +460,12 @@ a.collectionsbutton:hover {
     font-family: 'ArchiveFont', sans-serif;
 }
 
-.loginpage h1{
+.loginpage h1 {
     font-size: 3vw;
     margin: 0;
 }
 
-.loginpage .loginform{
+.loginpage .loginform {
     font-size: 1.5vw;
 }
 
@@ -473,8 +490,99 @@ a.collectionsbutton:hover {
     font-size: 1vw;
 }
 
-.loginbutton:hover{
+.loginbutton:hover {
     background-color: rgb(252, 114, 114);
+    color: white;
+}
+
+.welcomeuser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.welcomeuser h1 {
+    font-size: 5vw;
+    margin: 0;
+}
+
+.welcomeuser h2 {
+    font-size: 2vw;
+    margin: 0;
+}
+
+.userdetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+    width: fit-content;
+    margin: auto;
+    font-size: 2vw;
+}
+
+.userdetails p {
+    margin: 5px;
+
+}
+
+.updatedetailslink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'ArchiveFont', sans-serif;
+    font-size: 1vw;
+}
+
+.updatedetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.updatedetails h3 {
+    font-size: 1.5vw;
+    margin: 0;
+}
+
+.updatedetailsform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'ArchiveFont', sans-serif;
+}
+
+.updatedetailsform input {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.updatedetailsbutton {
+    display: inline-block;
+    padding: 1.2vw 1.7vw;
+    color: white;
+    background-color: crimson;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    border: black 2px solid;
+    transition: 0.3s ease;
+    font-size: 1vw;
+    font-family: 'ArchiveFont', sans-serif;
+    margin-bottom: 10px;
+}
+
+.updatedetailsbutton:hover {
+    background-color: rgb(190, 189, 189);
     color: white;
 }
 
