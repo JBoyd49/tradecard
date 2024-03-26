@@ -187,36 +187,20 @@ app.post('/updatedetails/:userId', async (req, res) => {
     }
 });
 
-
+//gets the card image using the API and displays to screen
 app.get("/cards", async (req, res, next) => {
-
-    // Check if the user is logged in and displays the correct header
-    if (req.session.loggedIn) {
-        res.render('cards', { header: 'headerloggedin' });
-    } else {
-        res.render('cards', { header: 'header' });
-    }
-
     try {
-        const url = "https://api.tcgdex.net/v2/en/base/base1";
+        const url = "http://localhost:4000/cards";
+        const response = await axios.get(url);
+        const pokemonData = response.data;
 
-        const response = await fetch(url);
-        const basePokemon = await response.json();
-
-        // Check if basePokemon.cards is defined and is an array
-        if (!basePokemon.cards || !Array.isArray(basePokemon.cards)) {
-            console.error('Unexpected API response:', basePokemon);
-            res.status(500).send("Error fetching data from API");
-            return;
+        if (req.session.loggedIn) {
+            res.render('cards', { header: 'headerloggedin', cards: pokemonData });
+        } else {
+            res.render('cards', { header: 'header', cards: pokemonData });
         }
-
-        // Log the first card to the console
-        console.log(basePokemon.cards[0]);
-
-        // Pass all cards to the view
-        res.render("cards", { cards: basePokemon.cards })
     } catch (error) {
-        next(error) // This will now work correctly
+        next(error);
     }
 });
 

@@ -128,6 +128,22 @@ app.post('/updatedetails/:userId', (req, res) => {
     });
 });
 
+//gets the card information from the databade using the API 
+app.get('/cards', (req, res) => {
+
+    const cardSQL = 'SELECT * FROM pokemon';
+
+    db.query(cardSQL, (error, pokemonData) => {
+        if (error) {
+            console.error('Failed to fetch Pokemon:', error);
+            res.status(500).send({ message: 'Failed to fetch Pokemon' });
+        } else {
+            res.json(pokemonData);
+        }
+    });
+
+});
+
 app.listen(4000, () => {
     console.log("Server is running on port 4000");
 });

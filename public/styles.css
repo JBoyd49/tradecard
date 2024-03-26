@@ -10,26 +10,11 @@ main {
     padding-top: 30px;
 }
 
-.grid-row {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-}
-
-.grid-item {
-    height: 50px;
-    flex-basis: 20%;
-    padding: 20px;
-    width: 40px;
-    border: thin solid red;
-    margin: 10px;
-}
-
 .header {
     padding: 10px;
     background-color: crimson;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-bottom: solid 2px black;
 }
@@ -309,6 +294,11 @@ a.createaccountbutton:hover {
     margin-left: 7vw;
 }
 
+.featuresbox1img img, .featuresbox2img img, .featuresbox3img img {
+    max-width: 100%;
+    height: auto;
+}
+
 .featureswrapper {
     display: flex;
     justify-content: space-between;
@@ -584,6 +574,36 @@ a.collectionsbutton:hover {
 .updatedetailsbutton:hover {
     background-color: rgb(190, 189, 189);
     color: white;
+}
+
+.showCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.cardImages {
+    flex-basis: calc(25% - 10px);
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.cardImages img {
+    width: 100%;
+    height: auto;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cards h1 {
+    font-size: 5vw;
+    font-family: 'ArchiveFont', sans-serif;
 }
 
 @media only screen and (max-width: 1458px) {
