@@ -1,19 +1,21 @@
 <%- include(header) %>
 
-    <main>
-        <div class="cards">
-            <h1>All Base Set Pokemon</h1>
-            <div class="showCards">
-                <% cards.forEach(cards=> { %>
-                    <div class="cardImages">
-                        <img src="<%= cards.cardImage %>">
-                    </div>
-                    <% }) %>
-            </div>
+<main>
+    <div class="cards">
+        <h1>All Base Set Pokemon</h1>
+        <div class="showCards">
+            <% cards.forEach(card => { %>
+                <div class="cardImages">
+                    <a href="/cards/<%= card.pokemonID %>">
+                        <img src="<%= card.cardImage %>">
+                    </a>
+                </div>
+            <% }) %>
         </div>
-    </main>
+    </div>
+</main>
 
-    </body>
-    <%- include("footer") %>
+</body>
+<%- include("footer") %>
 
-        </html>
+</html>

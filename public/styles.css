@@ -57,6 +57,8 @@ main {
     border-radius: 5px;
     border: black 2px solid;
     transition: 0.3s ease;
+    height: 3vh;
+    width: 6vw;
 }
 
 .header .logintopbutton:hover {
@@ -604,6 +606,23 @@ a.collectionsbutton:hover {
 .cards h1 {
     font-size: 5vw;
     font-family: 'ArchiveFont', sans-serif;
+}
+
+.pokemondetails{
+    display: flex;
+    font-family: 'ArchiveFont', sans-serif;
+    font-size: 1.8vw;
+}
+
+.pokemondetails .cardImage, .pokemondetails .cardData{
+    flex: 1;
+    padding: 10px;
+}
+
+.pokemondetails .cardImage img{
+    margin: 10px;
+    width: 85%;
+    height: auto;
 }
 
 @media only screen and (max-width: 1458px) {

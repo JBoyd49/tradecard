@@ -204,6 +204,28 @@ app.get("/cards", async (req, res, next) => {
     }
 });
 
+app.get('/cards/:id', async (req, res) => {
+
+    const cardId = req.params.id;
+
+    let cardDetails;
+
+    try {
+        const response = await axios.get(`http://localhost:4000/cards/${cardId}`);
+        cardDetails = response.data;
+        console.log(cardDetails);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Error fetching card details');
+    }
+
+    if (req.session.loggedIn) {
+        res.render('carddetails', { header: 'headerloggedin', card: cardDetails[0] });
+    } else {
+        res.render('carddetails', { header: 'header', card: cardDetails[0] });
+    }
+});
+
 app.listen(3000, (err) => {
     if (err) throw err;
     console.log("Tradecard is running on port 3000");

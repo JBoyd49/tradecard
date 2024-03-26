@@ -1,0 +1,19 @@
+<%- include(header) %>
+
+<div class="pokemondetails">
+    <div class="cardImage">
+        <img src="<%= card.cardImage %>">
+    </div>
+    <div class="cardData">
+        <p>Name: <%= card.name %></p>
+        <p>Type: <%= card.pokemonType %></p>
+        <p>Health Points: <%= card.healthPoints %></p>
+        <p>Stage: <%= card.stage %></p>
+        <p>Card Set: <%= card.cardSet %></p>
+        <p>Illustrator: <%= card.illustrator %></p><br>
+        <p>Height: <%= card.heightFeet %> ' <%= card.heightInches %>''</p>
+        <p>Weight: <%= card.weight %> lbs</p><br>
+        <p>Description: <%= card.pokemonDescription %></p><br>
+        <p>Rarity: <%= card.rarity %></p>
+    </div>
+</div>

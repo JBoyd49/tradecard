@@ -144,6 +144,23 @@ app.get('/cards', (req, res) => {
 
 });
 
+//gets the card data from the database using the API
+app.get('/cards/:id', (req, res) => {
+
+    const cardId = req.params.id;
+
+    const cardSQL = 'SELECT * FROM pokemon WHERE pokemonID = ?';
+
+    db.query(cardSQL, [cardId], (error, cardDetails) => {
+        if (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Error fetching card details' });
+        } else {
+            res.json(cardDetails);
+        }
+    });
+});
+
 app.listen(4000, () => {
     console.log("Server is running on port 4000");
 });
